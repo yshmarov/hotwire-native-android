@@ -1,0 +1,4 @@
+jdk:
+  - openjdk17
+install:
+  - ./gradlew -Pversion=$VERSION :navigation-fragments:testReleaseUnitTest :navigation-fragments:lint :navigation-fragments:publishToMavenLocal

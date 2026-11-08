@@ -12,8 +12,8 @@ val libVersionName by extra(version as String)
 val libraryName by extra("Hotwire Native for Android - Fragment Navigation")
 val libraryDescription by extra("Android framework for making Hotwire Native apps")
 
-val publishedGroupId by extra("dev.hotwire")
-val publishedArtifactId by extra("navigation-fragments")
+val publishedGroupId by extra(providers.environmentVariable("GROUP").getOrElse("dev.hotwire"))
+val publishedArtifactId by extra(providers.environmentVariable("ARTIFACT").getOrElse("navigation-fragments"))
 
 val siteUrl by extra("https://github.com/hotwired/hotwire-native-android")
 val gitUrl by extra("https://github.com/hotwired/hotwire-native-android.git")
@@ -72,7 +72,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":core"))
+    // Keep the published core unchanged for the 1.3.1 lifecycle backport.
+    implementation("dev.hotwire:core:1.3.1")
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.0")
