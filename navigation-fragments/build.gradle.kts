@@ -12,7 +12,10 @@ val libVersionName by extra(version as String)
 val libraryName by extra("Hotwire Native for Android - Fragment Navigation")
 val libraryDescription by extra("Android framework for making Hotwire Native apps")
 
-val publishedGroupId by extra("dev.hotwire")
+val jitpackGroup = providers.environmentVariable("GROUP").zip(providers.environmentVariable("ARTIFACT")) { owner, repository ->
+    "$owner.$repository"
+}
+val publishedGroupId by extra(jitpackGroup.getOrElse("dev.hotwire"))
 val publishedArtifactId by extra("navigation-fragments")
 
 val siteUrl by extra("https://github.com/hotwired/hotwire-native-android")
